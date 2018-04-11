@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="exitUntilCollapsed|scroll"
-            app:title="WOOF"
+            android:fontFamily="sans-serif-medium"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
             android:background="@drawable/background">
@@ -198,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="My Account"/>
+                            android:text="My Dog"/>
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
@@ -266,6 +266,7 @@
     </android.support.v4.widget.NestedScrollView>
         
     <android.support.design.widget.FloatingActionButton
+        android:onClick="showPopUp"
         android:elevation="6dp"
         android:src="@drawable/ic_action_name"
         android:backgroundTint="@color/orange"
@@ -276,6 +277,17 @@
         app:pressedTranslationZ="12dp"
         app:layout_anchor="@id/appbar"
         app:layout_anchorGravity="bottom|right|end"/>
+
+
+    <ImageView
+        android:elevation="6dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:background="@drawable/logo"
+        app:elevation="6dp"
+        app:layout_anchor="@id/appbar"
+        app:layout_anchorGravity="bottom|center"/>
 
 </android.support.design.widget.CoordinatorLayout>
 
