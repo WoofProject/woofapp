@@ -1,14 +1,17 @@
 package com.enterprises.woof.woof;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.location.Location;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private CardView appointmentsCard, medicationsCard, routinesCard, accountCard, locationCard;
+    Dialog myDialog;
 
 
     @Override
@@ -30,7 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         accountCard.setOnClickListener(this);
         locationCard.setOnClickListener(this);
 
-
+        //pop-up initialisation
+        myDialog = new Dialog(this);
     }
 
     @Override
@@ -42,8 +46,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.medications_card : intent = new Intent(this, Medications.class); startActivity(intent); break;
             case R.id.routines_card : intent = new Intent(this, Routines.class); startActivity(intent); break;
             case R.id.account_card : intent = new Intent(this, Accounts.class); startActivity(intent); break;
-            case R.id.location_card : intent = new Intent(this, location.class); startActivity(intent); break;
+            case R.id.location_card : intent = new Intent(this, Maps.class); startActivity(intent); break;
             default : break;
         }
+    }
+
+    public void showPopUp(View v) {
+        TextView txtClose;
+        myDialog.setContentView(R.layout.custompopup);
+        txtClose = (TextView) myDialog.findViewById(R.id.txtclose);
+        txtClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                myDialog.dismiss();
+            }
+        });
+        myDialog.show();
     }
 }

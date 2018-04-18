@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical">
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="50dp"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:textColor="@color/white"
+            android:text="Welcome to Woof"
+            android:gravity="center"/>
+        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="where the future of dog technology becomes reality! every dog is welcome to join with their owners!"
+            android:textSize="15sp"/>
+        <LinearLayout
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+            <Button
+                android:id="@+id/learnmore"
+                android:clickable="true"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttonstylegreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Learn More"
+                android:textColor="@color/white"/>
+            <Button
+                android:drawablePadding="10dp"
+                android:drawableRight="@drawable/ic_pets_black_24dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttonstyle2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Join Woof"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="username"/>
+        <EditText
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="password"
+            android:inputType="textPassword"/>
+        <Button
+            android:drawableRight="@drawable/ic_send_black_24dp"
+            android:layout_marginTop="40dp"
+            android:width="140dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/buttonstylegreen"
+            android:text="Log in"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+</LinearLayout>

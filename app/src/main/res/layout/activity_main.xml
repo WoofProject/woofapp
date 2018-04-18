@@ -34,229 +34,262 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_anchor="@+id/nestedScrollView"
+        app:layout_anchorGravity="right|top"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fcfcfc"
+            android:gravity="center"
             android:orientation="vertical"
-            android:padding="10dp"
-            android:gravity="center"
-            android:id="@+id/ll">
+            android:padding="10dp">
 
             <LinearLayout
-            android:clipToPadding="false"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <android.support.v7.widget.CardView
-                android:id="@+id/appointments_card"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="160dp"
-                android:layout_height="190dp"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/circlebackgroundpurple"
-                        app:srcCompat="@drawable/ic_access_time_black_24dp"
-                        android:padding="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:text="Appointments"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_margin="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Check upcoming appointments"
-                        android:padding="5dp"
-                        android:textColor="@android:color/darker_gray"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:id="@+id/medications_card"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:layout_width="160dp"
-                android:layout_height="190dp"
-                android:layout_margin="10dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/circlebackgroundpink"
-                        app:srcCompat="@drawable/ic_healing_black_24dp"
-                        android:padding="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:layout_marginTop="10dp"
-                        android:text="Medications"/>
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/lightGray"
-                        android:layout_margin="10dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Check upcoming medications"
-                        android:padding="5dp"
-                        android:textColor="@android:color/darker_gray"/>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
-
-            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <android.support.v7.widget.CardView
-                    android:id="@+id/routines_card"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
+                    android:id="@+id/appointments_card"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circlebackgroundgreen"
-                            app:srcCompat ="@drawable/ic_today_black_24dp"
-                            android:padding="10dp"/>
+                            android:background="@drawable/circlebackgroundpurple"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_access_time_black_24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Daily Routines"/>
+                            android:text="Appointments"
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/lightGray"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp"
+                            android:background="@color/lightGray" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Check upcoming to-do tasks"
                             android:padding="5dp"
-                            android:textColor="@android:color/darker_gray"/>
+                            android:text="Check upcoming appointments"
+                            android:textColor="@android:color/darker_gray" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
+
                 <android.support.v7.widget.CardView
-                    android:id="@+id/account_card"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
+                    android:id="@+id/medications_card"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circlebackgroundyellow"
-                            app:srcCompat="@drawable/ic_loyalty_black_24dp"
-                            android:padding="10dp"/>
+                            android:background="@drawable/circlebackgroundpink"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_healing_black_24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="My Dog"/>
+                            android:text="Medications"
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/lightGray"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp"
+                            android:background="@color/lightGray" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Check your account status and dog progress"
                             android:padding="5dp"
-                            android:textColor="@android:color/darker_gray"/>
+                            android:text="Check upcoming medications"
+                            android:textColor="@android:color/darker_gray" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="false"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:orientation="horizontal">
+
                 <android.support.v7.widget.CardView
-                    android:id="@+id/location_card"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:clickable="true"
-                    android:layout_width="340dp"
+                    android:id="@+id/routines_card"
+                    android:layout_width="160dp"
                     android:layout_height="190dp"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
+
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:background="@drawable/circlebackgroundblack"
-                            app:srcCompat="@drawable/ic_location_on_black_24dp"
-                            android:padding="10dp"/>
+                            android:background="@drawable/circlebackgroundgreen"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_today_black_24dp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
                             android:layout_marginTop="10dp"
-                            android:text="Location"/>
+                            android:text="Daily Routines"
+                            android:textStyle="bold" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/lightGray"
-                            android:layout_margin="10dp"/>
+                            android:layout_margin="10dp"
+                            android:background="@color/lightGray" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="Enter walking mode and make your journey across the dog world"
                             android:padding="5dp"
-                            android:textColor="@android:color/darker_gray"/>
+                            android:text="Check upcoming to-do tasks"
+                            android:textColor="@android:color/darker_gray" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/account_card"
+                    android:layout_width="160dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circlebackgroundyellow"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_loyalty_black_24dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="My Dog"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightGray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Check your account status and dog progress"
+                            android:textColor="@android:color/darker_gray" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/location_card"
+                    android:layout_width="340dp"
+                    android:layout_height="190dp"
+                    android:layout_margin="10dp"
+                    android:clickable="true"
+                    android:foreground="?android:attr/selectableItemBackground">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circlebackgroundblack"
+                            android:padding="10dp"
+                            app:srcCompat="@drawable/ic_location_on_black_24dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="Location"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_margin="10dp"
+                            android:background="@color/lightGray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Enter walking mode and make your journey across the dog world"
+                            android:textColor="@android:color/darker_gray" />
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
             </LinearLayout>

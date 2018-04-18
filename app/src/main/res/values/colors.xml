@@ -10,5 +10,8 @@
     <color name="green">#00bfa5</color>
     <color name="black">#000</color>
     <color name="orange">#ffa000</color>
+    <color name="lightBlue">#49acd5</color>
+    <color name="darkGreen">#45bc62</color>
+    <color name="white">#fff</color>
 
 </resources>
