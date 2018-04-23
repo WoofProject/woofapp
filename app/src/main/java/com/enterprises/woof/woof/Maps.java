@@ -13,6 +13,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    private String url = "";
+    private LatLng latlng;
+    Locator locator = new Locator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +40,17 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+        getLocation(url);
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // LatLng sydney = new LatLng(-34, 151);
+        // mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latlng));
     }
 
-    public void getRequest() {
-        String url = "https://app.trackimo.com/api/v3/accounts/1098105/locations?20&1";
-        String charset = "UTF-8";
+    public void getLocation (String url) {
+        TrackimoDevice device = locator.getDevice(url);
+        latlng = new LatLng(device.getLat(), device.getLng());
     }
+
+
 }
