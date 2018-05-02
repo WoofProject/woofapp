@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 public class Medications extends AppCompatActivity {
 
+    private String medicationName;
+    private String startDate;
+    private String endDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
