@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity"/>
+        <activity android:name=".SignUp"/>
         <activity android:name=".Appointments" />
         <activity android:name=".Medications" />
         <activity android:name=".Routines" />
