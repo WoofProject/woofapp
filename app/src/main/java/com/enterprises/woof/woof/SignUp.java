@@ -9,10 +9,22 @@ import android.widget.Button;
 public class SignUp extends AppCompatActivity{
 
     Button signupC;
+    private int id;
+    private String name;
+    private String email;
+    private String password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+
+        signupC = (Button)findViewById(R.id.signup);
+        signupC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SignUp.this, Login.class));
+            }
+        });
     }
 }
