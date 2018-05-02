@@ -126,6 +126,7 @@
                 android:drawablePadding="10dp"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:inputType="date"
                 android:hint="Choose a date"/>
 
         </LinearLayout>
@@ -146,6 +147,7 @@
                 android:drawablePadding="10dp"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:inputType="date"
                 android:hint="Choose a time"/>
         </LinearLayout>
     </LinearLayout>
