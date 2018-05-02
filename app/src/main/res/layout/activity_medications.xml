@@ -105,6 +105,7 @@
                 android:drawablePadding="10dp"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
+                android:inputType="none"
                 android:hint="Name of medication"/>
 
         </LinearLayout>
@@ -119,15 +120,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Time"
+                android:text="Start Date"
                 android:gravity="center"/>
 
             <EditText
-                android:drawablePadding="10dp"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:inputType="date"
-                android:hint="Choose a date"/>
+                android:drawablePadding="10dp"
+                android:hint="Choose a date (dd/mm/yy)"
+                android:inputType="date"/>
 
         </LinearLayout>
 
@@ -141,14 +142,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Time"
+                android:text="End Date"
                 android:gravity="center"/>
             <EditText
                 android:drawablePadding="10dp"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:inputType="date"
-                android:hint="Choose a time"/>
+                android:hint="Choose a day (dd/mm/yy)"/>
         </LinearLayout>
     </LinearLayout>
 
