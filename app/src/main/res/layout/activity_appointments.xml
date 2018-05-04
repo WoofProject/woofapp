@@ -69,18 +69,24 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
+            android:id="@+id/addNewAppointment"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:text="Add New"
             android:textSize="25sp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:drawableRight="@drawable/ic_add_black_24dp"/>
+        <ImageView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/addAppointment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:clickable="true"/>
+
     </LinearLayout>
 
     <LinearLayout
