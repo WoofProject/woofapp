@@ -52,12 +52,13 @@
         android:padding="30dp">
 
         <TextView
+            android:id="@+id/currentAppointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:gravity="center"
             android:text="No current appointments"
-            android:gravity="center"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -109,10 +110,11 @@
                 android:gravity="center"/>
 
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentTitle"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Name your appointment"/>
+                android:drawablePadding="10dp"
+                android:hint="Name of appointment" />
 
         </LinearLayout>
 
@@ -130,10 +132,11 @@
                 android:gravity="center"/>
 
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentDate"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Choose a date"/>
+                android:drawablePadding="10dp"
+                android:hint="Date of appointment" />
 
         </LinearLayout>
 
@@ -149,11 +152,13 @@
                 android:textColor="@color/black"
                 android:text="Time"
                 android:gravity="center"/>
+
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentTime"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Choose a time"/>
+                android:drawablePadding="10dp"
+                android:hint="Time of appointment" />
         </LinearLayout>
     </LinearLayout>
 

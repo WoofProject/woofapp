@@ -51,12 +51,13 @@
         android:padding="30dp">
 
         <TextView
+            android:id="@+id/currentMedication"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:gravity="center"
             android:text="No upcoming medications"
-            android:gravity="center"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -109,11 +110,12 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/medicationTitle"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                android:hint="Name of medication"/>
+                android:drawablePadding="10dp"
+                android:hint="Name of medication"
+                android:inputType="none" />
 
         </LinearLayout>
 
@@ -131,11 +133,12 @@
                 android:gravity="center"/>
 
             <EditText
+                android:id="@+id/medicationStart"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:hint="Choose a date (dd/mm/yy)"
-                android:inputType="date"/>
+                android:hint="Choose a start date "
+                android:inputType="none" />
 
         </LinearLayout>
 
@@ -153,11 +156,12 @@
                 android:gravity="center"/>
 
             <EditText
+                android:id="@+id/medicationEnd"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:hint="Choose a date (dd/mm/yy)"
-                android:inputType="date" />
+                android:hint="Choose an end date "
+                android:inputType="none" />
         </LinearLayout>
     </LinearLayout>
 

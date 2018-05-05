@@ -1,14 +1,14 @@
 package com.enterprises.woof.woof;
 
-import java.sql.Time;
-import java.util.Date;
 
-public class AppointmentObject {
+import android.support.annotation.NonNull;
+
+public class AppointmentObject implements Comparable{
     private String title;
-    private Date date;
-    private Time time;
+    private String date;
+    private String time;
 
-    public AppointmentObject(String title, Date date, Time time) {
+    public AppointmentObject(String title, String date, String time) {
         this.title = title;
         this.date = date;
         this.time = time;
@@ -22,19 +22,24 @@ public class AppointmentObject {
         this.title = title;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
+    }
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        return 0;
     }
 }
