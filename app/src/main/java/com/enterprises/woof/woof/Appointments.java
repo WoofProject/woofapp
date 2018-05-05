@@ -16,7 +16,7 @@ public class Appointments extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                ((TextView)findViewById(R.id.addNewAppointment)).setText("appointment change success");
+                ((TextView)findViewById(R.id.addNewAppointment)).setText("candy paint");
             }
         });
 

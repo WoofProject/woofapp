@@ -17,7 +17,7 @@ public class Medications extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                ((TextView)findViewById(R.id.addNewMedication)).setText("HELLO");
+                ((TextView)findViewById(R.id.addNewMedication)).setText("gucci gang");
             }
         });
     }
