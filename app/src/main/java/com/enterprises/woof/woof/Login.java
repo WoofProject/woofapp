@@ -40,8 +40,8 @@ public class Login extends AppCompatActivity {
 
                 String password = helper.searchPassword(str);
                 if(pass.equals(password)) {
-                    Toast incorrect = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
-                    incorrect.show();
+                    Toast correct = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
+                    correct.show();
                     startActivity(new Intent(Login.this, MainActivity.class));
                 }
                 else {

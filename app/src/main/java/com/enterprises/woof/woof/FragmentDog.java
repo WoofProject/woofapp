@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class FragmentDog extends Fragment {
     View view;
@@ -25,6 +26,8 @@ public class FragmentDog extends Fragment {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast registered = Toast.makeText(getActivity(), "Successfully created account, welcome!", Toast.LENGTH_SHORT);
+                registered.show();
                 startActivity(new Intent(getActivity(), Login.class));
             }
         });
