@@ -3,6 +3,8 @@ package com.enterprises.woof.woof;
 
 import android.support.annotation.NonNull;
 
+import java.util.Objects;
+
 public class MedicationObject implements Comparable{
 
     private String title;
@@ -10,6 +12,9 @@ public class MedicationObject implements Comparable{
     private String endDate;
 
     public MedicationObject(String title, String startDate, String endDate) {
+        Objects.requireNonNull(title);
+        Objects.requireNonNull(startDate);
+        Objects.requireNonNull(endDate);
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;

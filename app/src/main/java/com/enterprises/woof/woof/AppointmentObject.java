@@ -3,12 +3,17 @@ package com.enterprises.woof.woof;
 
 import android.support.annotation.NonNull;
 
+import java.util.Objects;
+
 public class AppointmentObject implements Comparable{
     private String title;
     private String date;
     private String time;
 
     public AppointmentObject(String title, String date, String time) {
+        Objects.requireNonNull(title);
+        Objects.requireNonNull(date);
+        Objects.requireNonNull(time);
         this.title = title;
         this.date = date;
         this.time = time;
