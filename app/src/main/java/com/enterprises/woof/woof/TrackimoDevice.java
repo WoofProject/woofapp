@@ -30,4 +30,52 @@ public class TrackimoDevice {
     public double getLng() {
         return lng;
     }
+
+    public double getLocation_id() {
+        return location_id;
+    }
+
+    public void setLocation_id(double location_id) {
+        this.location_id = location_id;
+    }
+
+    public double getDevice_id() {
+        return device_id;
+    }
+
+    public void setDevice_id(double device_id) {
+        this.device_id = device_id;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
+    }
+
+    public int getBattery() {
+        return battery;
+    }
+
+    public void setBattery(int battery) {
+        this.battery = battery;
+    }
+
+    public String getGps() {
+        return gps;
+    }
+
+    public void setGps(String gps) {
+        this.gps = gps;
+    }
+
+    public boolean isIs_triangulated() {
+        return is_triangulated;
+    }
+
+    public void setIs_triangulated(boolean is_triangulated) {
+        this.is_triangulated = is_triangulated;
+    }
 }

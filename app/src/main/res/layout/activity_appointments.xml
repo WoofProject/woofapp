@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="31sp"
             android:textColor="@color/black"
             android:text="Appointments"
             android:gravity="center"/>
@@ -40,7 +40,7 @@
                 android:layout_marginTop="35dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_access_alarm_black_24dp" />
+                app:srcCompat="@drawable/ic_add_alarm_black_24dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -52,12 +52,13 @@
         android:padding="30dp">
 
         <TextView
+            android:id="@+id/currentAppointment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/black"
+            android:gravity="center"
             android:text="No current appointments"
-            android:gravity="center"/>
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -69,18 +70,24 @@
         android:background="@color/colorPrimaryDark">
 
         <TextView
+            android:id="@+id/addNewAppointment"
             android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
             android:textColor="@color/white"
             android:text="Add New"
             android:textSize="25sp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:drawableRight="@drawable/ic_add_black_24dp"/>
+        <ImageView
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/addAppointment"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            android:clickable="true"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -103,10 +110,11 @@
                 android:gravity="center"/>
 
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentTitle"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Name your appointment"/>
+                android:drawablePadding="10dp"
+                android:hint="Name of appointment" />
 
         </LinearLayout>
 
@@ -124,10 +132,11 @@
                 android:gravity="center"/>
 
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentDate"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Choose a date"/>
+                android:drawablePadding="10dp"
+                android:hint="Date of appointment" />
 
         </LinearLayout>
 
@@ -143,11 +152,13 @@
                 android:textColor="@color/black"
                 android:text="Time"
                 android:gravity="center"/>
+
             <EditText
-                android:drawablePadding="10dp"
+                android:id="@+id/appointmentTime"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:hint="Choose a time"/>
+                android:drawablePadding="10dp"
+                android:hint="Time of appointment" />
         </LinearLayout>
     </LinearLayout>
 
