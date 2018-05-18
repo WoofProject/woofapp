@@ -2,25 +2,40 @@ package com.enterprises.woof.woof;
 
 public class TrackimoDevice {
 
+        private double age;
+        private double altitude;
+        private boolean gps;
         private double location_id;
-        private double device_id;
-        private double time;
         private double lat;
         private double lng;
-        private int battery;
-        private String gps;
+        private double speed;
+        private double battery;
         private boolean is_triangulated;
+        private String speed_unit;
+        private double device_id;
+        private double time;
+        private String type;
 
 
-    public TrackimoDevice(double location_id, double device_id, double time, double lat, double lng, int battery, String gps, boolean is_triangulated) {
+    public TrackimoDevice(double age, double altitude, boolean gps, double location_id, double lat, double lng, double speed, double battery, boolean is_triangulated, String speed_unit, double device_id, double time, String type) {
+        this.age = age;
+        this.altitude = altitude;
+        this.gps = gps;
         this.location_id = location_id;
-        this.device_id = device_id;
-        this.time = time;
         this.lat = lat;
         this.lng = lng;
+        this.speed = speed;
         this.battery = battery;
-        this.gps = gps;
         this.is_triangulated = is_triangulated;
+        this.speed_unit = speed_unit;
+        this.device_id = device_id;
+        this.time = time;
+        this.type = type;
+    }
+
+    public TrackimoDevice(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public double getLat() {
@@ -31,51 +46,4 @@ public class TrackimoDevice {
         return lng;
     }
 
-    public double getLocation_id() {
-        return location_id;
-    }
-
-    public void setLocation_id(double location_id) {
-        this.location_id = location_id;
-    }
-
-    public double getDevice_id() {
-        return device_id;
-    }
-
-    public void setDevice_id(double device_id) {
-        this.device_id = device_id;
-    }
-
-    public double getTime() {
-        return time;
-    }
-
-    public void setTime(double time) {
-        this.time = time;
-    }
-
-    public int getBattery() {
-        return battery;
-    }
-
-    public void setBattery(int battery) {
-        this.battery = battery;
-    }
-
-    public String getGps() {
-        return gps;
-    }
-
-    public void setGps(String gps) {
-        this.gps = gps;
-    }
-
-    public boolean isIs_triangulated() {
-        return is_triangulated;
-    }
-
-    public void setIs_triangulated(boolean is_triangulated) {
-        this.is_triangulated = is_triangulated;
-    }
 }
