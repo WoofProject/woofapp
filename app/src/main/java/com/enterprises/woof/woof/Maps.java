@@ -61,7 +61,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     }
 
     public void getLocation () {
-        TrackimoDevice device = locator.getDevice();
+        TrackimoDevice device = locator.getDevice(getApplicationContext());
         latlng = new LatLng(device.getLat(), device.getLng());
     }
 

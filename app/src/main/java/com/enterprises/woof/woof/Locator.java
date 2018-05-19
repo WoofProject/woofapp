@@ -3,6 +3,8 @@ package com.enterprises.woof.woof;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -19,14 +21,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Locator extends Application {
+public class Locator {
 
-    JSONObject response;
+    JSONObject response = new JSONObject();
 
-    private void getResponse () {
+    private void getResponse (Context context) {
 
         String url = "https://app.trackimo.com/api/v3/accounts/81361/locations/filter?limit=";
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("device_ids", "1098105");
@@ -65,28 +67,29 @@ public class Locator extends Application {
 
     }
 
-    public TrackimoDevice getDevice () {
-        //getResponse();
+    public TrackimoDevice getDevice (Context mContext) {
+        getResponse(mContext);
+        Log.d("trackimoTest", response.toString());
         Gson gson = new Gson();
-        String jsontext = "{\n" +
-                "\"age\": 86,\n" +
-                "\"altitude\": null,\n" +
-                "\"gps\": false,\n" +
-                "\"location_id\": -1,\n" +
-                "\"lat\": 51.527308,\n" +
-                "\"lng\": -0.115876,\n" +
-                "\"speed\": 0,\n" +
-                "\"battery\": 65,\n" +
-                "\"is_triangulated\": false,\n" +
-                "\"speed_unit\": null,\n" +
-                "\"device_id\": 1098105,\n" +
-                "\"time\": 1526506757,\n" +
-                "\"type\": \"gsm\"\n" +
-                "}\n";
-        TrackimoDevice device = gson.fromJson(jsontext.toString(), TrackimoDevice.class);
-        //TrackimoDevice device1 = gson.fromJson(response.toString(), TrackimoDevice.class);
-        //return device1;
-        return device;
+//        String jsontext = "{\n" +
+//                "\"age\": 86,\n" +
+//                "\"altitude\": null,\n" +
+//                "\"gps\": false,\n" +
+//                "\"location_id\": -1,\n" +
+//                "\"lat\": 51.527308,\n" +
+//                "\"lng\": -0.115876,\n" +
+//                "\"speed\": 0,\n" +
+//                "\"battery\": 65,\n" +
+//                "\"is_triangulated\": false,\n" +
+//                "\"speed_unit\": null,\n" +
+//                "\"device_id\": 1098105,\n" +
+//                "\"time\": 1526506757,\n" +
+//                "\"type\": \"gsm\"\n" +
+//                "}\n";
+//        TrackimoDevice device = gson.fromJson(jsontext.toString(), TrackimoDevice.class);
+        TrackimoDevice device1 = gson.fromJson(response.toString(), TrackimoDevice.class);
+        return device1;
+//        return device;
     }
 
 
