@@ -5,6 +5,9 @@ import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +20,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private LatLng latlng;
+    private LatLng initial;
     Locator locator = new Locator();
 
     @Override
@@ -27,6 +31,16 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        findViewById(R.id.goToLocation).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                getLocation();
+                mMap.addMarker(new MarkerOptions().position(latlng).title("Current loc of trackimo"));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14), 5000, null);
+            }
+        });
     }
 
 
@@ -42,10 +56,10 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        getLocation();
+        initial = new LatLng(-43.490377, 172.314774);
         // Add a marker in Sydney and move the camera
         // LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(latlng).title("Current location of trackimo"));
+        mMap.addMarker(new MarkerOptions().position(initial).title("Current location of trackimo"));
         /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -57,12 +71,20 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
             return;
         }
         mMap.setMyLocationEnabled(true);*/
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 14), 5000, null);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(initial, 14), 5000, null);
     }
 
     public void getLocation () {
-        TrackimoDevice device = locator.getDevice(getApplicationContext());
-        latlng = new LatLng(device.getLat(), device.getLng());
+        locator.getResponse(this);
+
+
+        TextView lat = this.findViewById(R.id.latitude2);
+        TextView lng = this.findViewById(R.id.longitude2);
+
+        Double deviceLat = Double.parseDouble(lat.getText().toString());
+        Double deviceLng = Double.parseDouble(lng.getText().toString());
+
+        latlng = new LatLng(deviceLat.doubleValue(), deviceLng.doubleValue());
     }
 
 

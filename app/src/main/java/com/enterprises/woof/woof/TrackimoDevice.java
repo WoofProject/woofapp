@@ -38,6 +38,17 @@ public class TrackimoDevice {
         this.lng = lng;
     }
 
+    public TrackimoDevice() {
+
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
     public double getLat() {
         return lat;
     }
