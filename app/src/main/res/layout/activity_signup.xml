@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:textSize="35sp"
             android:textColor="@color/orange"
-            android:text="Please enter your credentials"
+            android:text="Create a Woof Account"
             android:gravity="center"
             android:layout_marginBottom="50dp"/>
 
