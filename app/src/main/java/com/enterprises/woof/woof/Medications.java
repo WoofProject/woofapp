@@ -56,10 +56,7 @@ public class Medications extends AppCompatActivity {
                         } else {
                             texts = texts.concat("\n\n"+"• "+m.getTitle()+" on "+m.getDay()+" at "+m.getTime());
                         }
-
                     }
-
-
 
                     ((TextView)findViewById(R.id.currentMedication)).setText(texts);
                     ((TextView)findViewById(R.id.medicationTitle)).setText("");

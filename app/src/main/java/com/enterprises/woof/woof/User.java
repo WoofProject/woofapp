@@ -1,5 +1,7 @@
 package com.enterprises.woof.woof;
 
+import android.support.v7.app.AppCompatActivity;
+
 public class User {
     ID_Creator id_creator = new ID_Creator();
     private String email;

@@ -13,21 +13,23 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 
 public class FragmentClient extends Fragment {
 
     View view;
     ViewPager viewPager;
     DatabaseHelper helper;
-    public final static String emailregex = " ^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-    private Pattern pattern;
-    private Matcher matcher;
+    public String namestr;
+
 
     public FragmentClient() {
 
+    }
+
+    public String getName(){
+        return namestr;
     }
 
     @Nullable
@@ -46,15 +48,22 @@ public class FragmentClient extends Fragment {
                 EditText password = getActivity().findViewById(R.id.clientpassword);
                 EditText password2 = getActivity().findViewById(R.id.clientpasswordconfirm);
 
-                String namestr = name.getText().toString();
+                namestr = name.getText().toString();
                 String emailstr = email.getText().toString();
                 String passwordstr = password.getText().toString();
                 String passwordstr2 = password2.getText().toString();
 
-                pattern = Pattern.compile(emailregex);
-                matcher = pattern.matcher(email.getText().toString());
+                boolean isEmailLegit = true;
 
-                    if (matcher.matches()) {
+                try {
+                    InternetAddress emailA = new InternetAddress(emailstr);
+                    emailA.validate();
+                }
+                catch (AddressException ex) {
+                    isEmailLegit = false;
+
+                }
+                    if (isEmailLegit) {
                         if (!passwordstr.equals(passwordstr2)) {
                             //incorrect password
                             Toast pass = Toast.makeText(getActivity(), "Passwords don't match!", Toast.LENGTH_SHORT);

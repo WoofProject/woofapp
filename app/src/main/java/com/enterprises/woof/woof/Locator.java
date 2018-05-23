@@ -25,36 +25,27 @@ public class Locator {
 
     JSONArray response1 = new JSONArray();
     JSONObject obj = new JSONObject();
-
-
     public void getResponse (final Context context) {
-
         String url = "https://app.trackimo.com/api/v3/accounts/81361/locations/filter?limit=";
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         try {
             final JSONObject jsonObject = new JSONObject("{\"device_ids\":[1098105]}");
-
         CustomRequest jsonObjectRequest = new CustomRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
                 response1 = response;
                 Log.d("trackimo", response1.toString());
-
                 try {
                     obj = (JSONObject) response1.get(0);
-
                     Double lat = obj.getDouble("lat");
                     Double lng = obj.getDouble("lng");
-
                 Activity activity = (Activity) context;
                 ((TextView)activity.findViewById(R.id.latitude2)).setText(lat.toString());
                 ((TextView)activity.findViewById(R.id.longitude2)).setText(lng.toString());
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
-
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
@@ -74,42 +65,28 @@ public class Locator {
                     headers.put("Referer", "https://app.trackimo.com/new_client/");
                     return headers;
                 }
-
             };
             Log.d("trackimoTest", jsonObjectRequest.toString());
             requestQueue.add(jsonObjectRequest);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
-
     public TrackimoDevice getDevice (Context mContext) {
         getResponse(mContext);
-
         Double lat = 0.0;
         Double lng = 0.0;
-
         try {
             obj = (JSONObject) response1.get(0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         Log.d("trackimo", obj.toString());
-
         TrackimoDevice device1 = new TrackimoDevice();
-
-
-
         Log.d("trackimoTestLocation", Double.toString(lat));
         Log.d("trackimoTestLocation", Double.toString(lng));
-
         device1.setLat(lat);
         device1.setLng(lng);
-
-
         return device1;
 //        return device;
     }
