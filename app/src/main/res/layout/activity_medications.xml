@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Title:"
+                android:text="Title  "
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -130,15 +130,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="Start Date"
+                android:text="Day"
                 android:gravity="center"/>
 
             <EditText
-                android:id="@+id/medicationStart"
+                android:id="@+id/medicationDay"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:hint="Choose a start date "
+                android:hint="Choose a day "
                 android:inputType="none" />
 
         </LinearLayout>
@@ -153,15 +153,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@color/black"
-                android:text="End Date"
+                android:text="Time"
                 android:gravity="center"/>
 
             <EditText
-                android:id="@+id/medicationEnd"
+                android:id="@+id/medicationTime"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:hint="Choose an end date "
+                android:hint="Choose a time "
                 android:inputType="none" />
         </LinearLayout>
     </LinearLayout>

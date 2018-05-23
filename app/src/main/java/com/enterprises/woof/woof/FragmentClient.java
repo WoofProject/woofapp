@@ -1,11 +1,12 @@
 package com.enterprises.woof.woof;
 
-import android.content.Intent;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +14,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class FragmentClient extends Fragment {
 
     View view;
     ViewPager viewPager;
     DatabaseHelper helper;
+    public final static String emailregex = " ^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+    private Pattern pattern;
+    private Matcher matcher;
 
     public FragmentClient() {
 
@@ -44,19 +51,27 @@ public class FragmentClient extends Fragment {
                 String passwordstr = password.getText().toString();
                 String passwordstr2 = password2.getText().toString();
 
-                if (!passwordstr.equals(passwordstr2)) {
-                    //incorrect password
-                    Toast pass = Toast.makeText(getActivity(), "Passwords don't match!", Toast.LENGTH_SHORT);
-                    pass.show();
-                } else {
-                    //insert to database
-                    Client c = new Client();
-                    c.setName(namestr);
-                    c.setEmail(emailstr);
-                    c.setPassword(passwordstr);
-                    helper.insertClient(c);
-                    viewPager.setCurrentItem(1);
-                }
+                pattern = Pattern.compile(emailregex);
+                matcher = pattern.matcher(email.getText().toString());
+
+                    if (matcher.matches()) {
+                        if (!passwordstr.equals(passwordstr2)) {
+                            //incorrect password
+                            Toast pass = Toast.makeText(getActivity(), "Passwords don't match!", Toast.LENGTH_SHORT);
+                            pass.show();
+                        } else {
+                            //insert to database
+                            Client c = new Client();
+                            c.setName(namestr);
+                            c.setEmail(emailstr);
+                            c.setPassword(passwordstr);
+                            helper.insertClient(c);
+                            viewPager.setCurrentItem(1);
+                        }
+                    } else {
+                        Toast pass = Toast.makeText(getActivity(), "Username/email is invalid!", Toast.LENGTH_SHORT);
+                        pass.show();
+                    }
             }
         });
         return view;

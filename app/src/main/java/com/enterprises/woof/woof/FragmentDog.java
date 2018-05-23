@@ -8,11 +8,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
 
-public class FragmentDog extends Fragment {
+
+public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedListener{
     View view;
+    Spinner spinner;
+    Spinner spinner2;
+    ArrayAdapter<CharSequence> adapter;
+    ArrayAdapter<CharSequence> adapter2;
 
     public FragmentDog() {
 
@@ -23,6 +31,16 @@ public class FragmentDog extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dog_fragment, container, false);
         Button register = (Button) view.findViewById(R.id.register);
+
+        //spinner = view.findViewById(R.id.spinner1);
+        //adapter = ArrayAdapter.createFromResource(this , R.array.breeds, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //spinner.setAdapter(adapter);
+        //spinner.setOnItemSelectedListener(this);
+
+        spinner = view.findViewById(R.id.spinner1);
+        spinner2 = view.findViewById(R.id.spinner2);
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,5 +50,28 @@ public class FragmentDog extends Fragment {
             }
         });
         return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        adapter = ArrayAdapter.createFromResource(getActivity(), R.array.breeds, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        adapter2 = ArrayAdapter.createFromResource(getActivity(), R.array.ages, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(adapter2);
+    }
+
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String breed = adapterView.getItemAtPosition(i).toString();
+        Toast.makeText(adapterView.getContext(), breed, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
