@@ -13,5 +13,7 @@
     <color name="lightBlue">#49acd5</color>
     <color name="darkGreen">#45bc62</color>
     <color name="white">#fff</color>
+    <color name="tabIndicatorColor">#2d2d2d</color>
+
 
 </resources>
