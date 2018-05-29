@@ -8,16 +8,16 @@ import java.util.Objects;
 public class MedicationObject implements Comparable{
 
     private String title;
-    private String startDate;
-    private String endDate;
+    private String day;
+    private String time;
 
-    public MedicationObject(String title, String startDate, String endDate) {
+    public MedicationObject(String title, String day, String time) {
         Objects.requireNonNull(title);
-        Objects.requireNonNull(startDate);
-        Objects.requireNonNull(endDate);
+        Objects.requireNonNull(day);
+        Objects.requireNonNull(time);
         this.title = title;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.day = day;
+        this.time = time;
     }
 
     public String getTitle() {
@@ -28,20 +28,20 @@ public class MedicationObject implements Comparable{
         this.title = title;
     }
 
-    public String getStartDate() {
-        return startDate;
+    public String getDay() {
+        return day;
     }
 
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+    public void setDay(String day) {
+        this.day = day;
     }
 
-    public String getEndDate() {
-        return endDate;
+    public String getTime() {
+        return time;
     }
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override

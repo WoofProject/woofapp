@@ -1,5 +1,10 @@
 package com.enterprises.woof.woof;
 
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
+
+
 public class Client {
     String name, email, password;
 
@@ -25,4 +30,6 @@ public class Client {
     public String getPassword() {
         return password;
     }
+
+
 }

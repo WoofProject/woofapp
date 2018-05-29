@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 public class Login extends AppCompatActivity {
 
     Button btn;
@@ -28,7 +29,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
         btn = (Button)findViewById(R.id.login);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,16 +38,15 @@ public class Login extends AppCompatActivity {
                 EditText b = (EditText)findViewById(R.id.enteredpassword);
                 String pass = b.getText().toString();
 
-                String password = helper.searchPassword(str);
-                if(pass.equals(password)) {
-                    Toast correct = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
-                    correct.show();
-                    startActivity(new Intent(Login.this, MainActivity.class));
-                }
-                else {
-                    Toast incorrect = Toast.makeText(Login.this, "Username and password don't match!", Toast.LENGTH_SHORT);
-                    incorrect.show();
-                }
+                    String password = helper.searchPassword(str);
+                    if (pass.equals(password)) {
+                        Toast correct = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
+                        correct.show();
+                        startActivity(new Intent(Login.this, MainActivity.class));
+                    } else {
+                        Toast incorrect = Toast.makeText(Login.this, "Username and password don't match!", Toast.LENGTH_SHORT);
+                        incorrect.show();
+                    }
             }
         });
 

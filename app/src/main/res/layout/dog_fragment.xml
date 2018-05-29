@@ -5,6 +5,22 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/dogname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Pet Name"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -12,20 +28,54 @@
         android:drawablePadding="10dp"
         android:hint="Dog Name"
         android:inputType="textPersonName" />
-    <EditText
-        android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/dogbreed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Breed"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner1"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Breed"
-        android:inputType="textEmailAddress"/>
-    <EditText
-        android:drawablePadding="10dp"
-        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/dogage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Age"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner2"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:hint="Age"
-        android:inputType="textPassword"/>
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"/>
+
     <Button
         android:drawableRight="@drawable/ic_send_black_24dp"
         android:id="@+id/register"

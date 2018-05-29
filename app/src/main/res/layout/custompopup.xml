@@ -41,22 +41,16 @@
                 android:layout_centerHorizontal="true">
             </ImageView>
         </android.support.v7.widget.CardView>
+
         <TextView
+            android:id="@+id/userNameP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Manny Pacquiao"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Auckland, New Zealand"
-            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:text=""
             android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
     <LinearLayout
         android:layout_marginTop="50dp"
@@ -70,12 +64,14 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="100dp">
+
             <TextView
+                android:id="@+id/totalwalks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="150"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,12 +86,15 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="100dp">
+
             <TextView
+
+                android:id="@+id/nDogs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,12 +109,14 @@
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="100dp">
+
             <TextView
+                android:id="@+id/dogFriends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textSize="18sp"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="18sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
