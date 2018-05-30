@@ -6,15 +6,12 @@ import android.widget.TextView;
 
 public class Popup extends AppCompatActivity{
 
-    Client c = new Client();
+    DatabaseHelper helper = new DatabaseHelper(getApplication());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custompopup);
-
-        ((TextView)findViewById(R.id.userNameP)).setText(c.getName());
-
     }
 
 }

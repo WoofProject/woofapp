@@ -1,14 +1,16 @@
 package com.enterprises.woof.woof;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 
 public class Client {
-    String name, email, password;
+    static String name, email, password, dogName;
 
-    public Client() {}
+    public Client() {
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -30,6 +32,9 @@ public class Client {
     public String getPassword() {
         return password;
     }
+
+    public void setDogName (String dogName) {this.dogName = dogName;}
+    public String getDogName() { return dogName; }
 
 
 }

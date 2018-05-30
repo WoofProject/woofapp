@@ -15,6 +15,7 @@ public class Login extends AppCompatActivity {
     Button btn2;
     Button btn3;
     DatabaseHelper helper = new DatabaseHelper(this);
+    CurrentUser user = new CurrentUser(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,7 @@ public class Login extends AppCompatActivity {
 
                     String password = helper.searchPassword(str);
                     if (pass.equals(password)) {
+                        user.setEmail(str);
                         Toast correct = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
                         correct.show();
                         startActivity(new Intent(Login.this, MainActivity.class));

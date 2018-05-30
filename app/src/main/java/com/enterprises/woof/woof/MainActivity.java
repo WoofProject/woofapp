@@ -12,10 +12,13 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private CardView appointmentsCard, medicationsCard, routinesCard, accountCard, locationCard;
     Dialog myDialog;
+    DatabaseHelper helper = new DatabaseHelper(this);
+    CurrentUser user = new CurrentUser(this);
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -52,8 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showPopUp(View v) {
+        String name = user.getName();
+        String doggo = user.getDogName();
+
         TextView txtClose;
         myDialog.setContentView(R.layout.custompopup);
+        ((TextView)myDialog.findViewById(R.id.userNameP)).setText("Current User: " + name);
+        ((TextView)myDialog.findViewById(R.id.doggoName)).setText("Your dog: " + doggo);
         txtClose = (TextView) myDialog.findViewById(R.id.txtclose);
         txtClose.setOnClickListener(new View.OnClickListener() {
             @Override

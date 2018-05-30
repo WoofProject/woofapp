@@ -11,16 +11,18 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "clients.db";
     private static final String TABLE_NAME = "clients";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_ID = "id";
+    private static final String COLUMN_DOG_NAME = "dogName";
+
     SQLiteDatabase db;
     private static final String TABLE_CREATE = "create table clients (id integer primary key not null , " +
-            " name text not null , email text not null , password text not null) ";
+            " name text not null , email text not null , password text not null , dogName text not null) ";
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -51,14 +53,55 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_NAME, c.getName());
         values.put(COLUMN_EMAIL, c.getEmail());
         values.put(COLUMN_PASSWORD, c.getPassword());
+        values.put(COLUMN_DOG_NAME, c.getDogName());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
     }
 
+
     public String searchPassword(String email) {
         db = this.getReadableDatabase();
         String query = "select email, password from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "Not Found";
+        if(cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if(a.equals(email)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }while(cursor.moveToNext());
+        }
+        return b;
+    }
+
+
+    public String searchName(String email) {
+        db = this.getReadableDatabase();
+        String query = "select email, name from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "Not Found";
+        if(cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if(a.equals(email)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }while(cursor.moveToNext());
+        }
+        return b;
+    }
+
+    public String searchDog(String email) {
+        db = this.getReadableDatabase();
+        String query = "select email, dogName from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         String a, b;
         b = "Not Found";

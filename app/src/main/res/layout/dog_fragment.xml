@@ -22,6 +22,7 @@
     </LinearLayout>
 
     <EditText
+        android:id="@+id/doggoName"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:drawableLeft="@drawable/ic_perm_identity_black_24dp"

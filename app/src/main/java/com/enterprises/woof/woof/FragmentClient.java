@@ -74,7 +74,6 @@ public class FragmentClient extends Fragment {
                             c.setName(namestr);
                             c.setEmail(emailstr);
                             c.setPassword(passwordstr);
-                            helper.insertClient(c);
                             viewPager.setCurrentItem(1);
                         }
                     } else {

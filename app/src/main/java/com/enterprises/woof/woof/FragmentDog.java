@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -21,6 +22,11 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
     Spinner spinner2;
     ArrayAdapter<CharSequence> adapter;
     ArrayAdapter<CharSequence> adapter2;
+    DatabaseHelper helper;
+    String chosenBreed;
+
+    Client client = new Client();
+    CurrentUser user;
 
     public FragmentDog() {
 
@@ -30,6 +36,8 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dog_fragment, container, false);
+        user = new CurrentUser(view.getContext());
+        helper = new DatabaseHelper(view.getContext());
         Button register = (Button) view.findViewById(R.id.register);
 
         //spinner = view.findViewById(R.id.spinner1);
@@ -44,6 +52,10 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EditText a = getActivity().findViewById(R.id.doggoName);
+                String nameDog = a.getText().toString();
+                client.setDogName(nameDog);
+                helper.insertClient(client);
                 Toast registered = Toast.makeText(getActivity(), "Successfully created account, welcome!", Toast.LENGTH_SHORT);
                 registered.show();
                 startActivity(new Intent(getActivity(), Login.class));
@@ -68,6 +80,7 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String breed = adapterView.getItemAtPosition(i).toString();
         Toast.makeText(adapterView.getContext(), breed, Toast.LENGTH_SHORT).show();
+        chosenBreed = breed;
     }
 
     @Override
