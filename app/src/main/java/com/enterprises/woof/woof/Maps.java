@@ -28,11 +28,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -115,9 +119,13 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     }
 
     private void editData() {
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm               dd/mm/yyyy");
+        String currentDateandTime = sdf.format(currentTime);
+
         listHash.clear();
         dropDowns.set(0, "Current Location: \n" + lat + ", " + lng);
-        dropDowns.set(1, "Time last taken of location: ");
+        dropDowns.set(1, "Time last taken of location: \n" + currentDateandTime);
         dropDowns.set(2, "Speed of recent recording: ");
 
         listHash.put(listDataHeader.get(0), dropDowns);
