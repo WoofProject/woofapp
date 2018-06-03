@@ -10,6 +10,7 @@ public final class CurrentUser {
     private static String email;
     private static String password;
     private static String dogName;
+    private static String dogBreed;
 
     public CurrentUser(Context context) {
         helper = new DatabaseHelper(context);
@@ -31,6 +32,11 @@ public final class CurrentUser {
     public String getDogName() {
         dogName = helper.searchDog(email);
         return dogName;
+    }
+
+    public String getDogBreed() {
+        dogBreed = helper.searchDogBreed(email);
+        return dogBreed;
     }
 
 }

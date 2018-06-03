@@ -70,7 +70,7 @@
             android:drawableLeft="@drawable/ic_perm_identity_black_24dp"
             android:drawablePadding="10dp"
             android:hint="email"
-            android:inputType="none" />
+            android:inputType="textEmailAddress"/>
         <EditText
             android:id="@+id/enteredpassword"
             android:drawablePadding="10dp"

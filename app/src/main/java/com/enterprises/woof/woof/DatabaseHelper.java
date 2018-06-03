@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper{
 
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "clients.db";
     private static final String TABLE_NAME = "clients";
     private static final String COLUMN_NAME = "name";
@@ -19,10 +19,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_PASSWORD = "password";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DOG_NAME = "dogName";
+    private static final String COLUMN_DOG_BREED = "breed";
 
     SQLiteDatabase db;
     private static final String TABLE_CREATE = "create table clients (id integer primary key not null , " +
-            " name text not null , email text not null , password text not null , dogName text not null) ";
+            " name text not null , email text not null , password text not null , dogName text not null , breed text) ";
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,6 +55,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         values.put(COLUMN_EMAIL, c.getEmail());
         values.put(COLUMN_PASSWORD, c.getPassword());
         values.put(COLUMN_DOG_NAME, c.getDogName());
+        values.put(COLUMN_DOG_BREED, c.getDogBreed());
 
         db.insert(TABLE_NAME, null, values);
         db.close();
@@ -102,6 +104,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public String searchDog(String email) {
         db = this.getReadableDatabase();
         String query = "select email, dogName from " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+        String a, b;
+        b = "Not Found";
+        if(cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if(a.equals(email)) {
+                    b = cursor.getString(1);
+                    break;
+                }
+            }while(cursor.moveToNext());
+        }
+        return b;
+    }
+
+    public String searchDogBreed(String email) {
+        db = this.getReadableDatabase();
+        String query = "select email, breed from " + TABLE_NAME;
         Cursor cursor = db.rawQuery(query, null);
         String a, b;
         b = "Not Found";

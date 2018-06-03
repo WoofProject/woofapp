@@ -18,6 +18,19 @@
         tools:context=".Maps" />
 
 
+    <Button
+        android:id="@+id/findParks"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/expandableView"
+        android:layout_gravity="center"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/buttonstylegrey"
+        android:text="Show nearby parks"
+        android:textColor="@color/lightBlue"
+        android:textSize="12dp" />
+
     <ExpandableListView
         android:id="@+id/expandableView"
         android:layout_width="250dp"
@@ -25,7 +38,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="16dp"></ExpandableListView>
+        android:layout_marginTop="69dp"></ExpandableListView>
 
     <Button
         android:id="@+id/goToLocation"

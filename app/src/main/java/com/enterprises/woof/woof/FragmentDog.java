@@ -5,12 +5,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
@@ -23,7 +25,6 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
     ArrayAdapter<CharSequence> adapter;
     ArrayAdapter<CharSequence> adapter2;
     DatabaseHelper helper;
-    String chosenBreed;
 
     Client client = new Client();
     CurrentUser user;
@@ -54,7 +55,14 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
             public void onClick(View view) {
                 EditText a = getActivity().findViewById(R.id.doggoName);
                 String nameDog = a.getText().toString();
+
+                Spinner spinner = (Spinner)getActivity().findViewById(R.id.spinner1);
+                String text = spinner.getSelectedItem().toString();
+
+
                 client.setDogName(nameDog);
+                Log.d("test", text);
+                client.setDogBreed(text);
                 helper.insertClient(client);
                 Toast registered = Toast.makeText(getActivity(), "Successfully created account, welcome!", Toast.LENGTH_SHORT);
                 registered.show();
@@ -80,11 +88,9 @@ public class FragmentDog extends Fragment implements AdapterView.OnItemSelectedL
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String breed = adapterView.getItemAtPosition(i).toString();
         Toast.makeText(adapterView.getContext(), breed, Toast.LENGTH_SHORT).show();
-        chosenBreed = breed;
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }

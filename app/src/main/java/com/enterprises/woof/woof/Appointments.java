@@ -39,7 +39,6 @@ public class Appointments extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-
                 String title = ((TextView)findViewById(R.id.appointmentTitle)).getText().toString();
                 String date = ((TextView)findViewById(R.id.appointmentDate)).getText().toString();
                 String time = ((TextView)findViewById(R.id.appointmentTime)).getText().toString();

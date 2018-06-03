@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 
 public class Client {
-    static String name, email, password, dogName;
+    static String name, email, password, dogName, dogBreed;
 
     public Client() {
     }
@@ -35,6 +35,9 @@ public class Client {
 
     public void setDogName (String dogName) {this.dogName = dogName;}
     public String getDogName() { return dogName; }
+
+    public void setDogBreed (String dogBreed) {this.dogBreed = dogBreed;}
+    public String getDogBreed() { return dogBreed; }
 
 
 }

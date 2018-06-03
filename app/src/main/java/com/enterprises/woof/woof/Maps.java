@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.database.DataSetObserver;
+import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -59,8 +60,22 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
     Marker m;
     Double lat;
     Double lng;
+    int PROXIMITY_RADIUS = 1000;
+    double latitude, longitude;
 
     CurrentUser user = new CurrentUser(this);
+
+
+    private String getUrl(double latitude, double longitude, String nearbyPlace) {
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
+        googlePlaceUrl.append("&keyword="+nearbyPlace);
+        googlePlaceUrl.append("&sensor=true");
+        googlePlaceUrl.append("&key=AIzaSyBJKMaCC5NKpNnKU5K2cw6OR4OHzlE4pTw");
+
+        return googlePlaceUrl.toString();
+    }
 
 
     @Override
@@ -85,6 +100,21 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
                 getLocation();
             }
         });
+        findViewById(R.id.findParks).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String park = "park";
+                String url = getUrl(lat, lng, park);
+                Object dataTransfer[] = new Object[2];
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+
+                GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+                getNearbyPlacesData.execute(dataTransfer);
+                Toast.makeText(Maps.this, "Showing the nearest Parks around your area", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
@@ -103,30 +133,17 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
 
     private void initData() {
-        listDataHeader.add(user.getDogName() + "'s Information:");
-        listDataHeader.add("OTHER INFORMATION");
+        listDataHeader.add(user.getDogName() + "'s Information");
+        listDataHeader.add("Other Information");
 
-        dropDowns.add("Current Location: \n" + lat + ", " + lng);
-        dropDowns.add("Time last taken of location: " );
-        dropDowns.add("Speed of recent recording: ");
+        dropDowns.add("Email: " );
+        dropDowns.add("Name: " );
+        dropDowns.add("Breed: " );
 
-        dropDowns2.add("Hello");
-        dropDowns2.add("Hello there");
-        dropDowns2.add("Hello, hi whats up");
-
-        listHash.put(listDataHeader.get(0), dropDowns);
-        listHash.put(listDataHeader.get(1), dropDowns2);
-    }
-
-    private void editData() {
-        Date currentTime = Calendar.getInstance().getTime();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm               dd/mm/yyyy");
-        String currentDateandTime = sdf.format(currentTime);
-
-        listHash.clear();
-        dropDowns.set(0, "Current Location: \n" + lat + ", " + lng);
-        dropDowns.set(1, "Time last taken of location: \n" + currentDateandTime);
-        dropDowns.set(2, "Speed of recent recording: ");
+        dropDowns2.add("Current Location: \n" + lat + ", " + lng);
+        dropDowns2.add("Time last taken of location: ");
+        dropDowns2.add("Speed of recent recording: ");
+        dropDowns2.add("GPS: ");
 
         listHash.put(listDataHeader.get(0), dropDowns);
         listHash.put(listDataHeader.get(1), dropDowns2);
@@ -176,15 +193,43 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
             CustomRequest jsonObjectRequest = new CustomRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
+                    boolean gpsMode = false;
+                    String gpsMessage = "";
+
                     response1 = response;
                     Log.d("trackimo", response1.toString());
                     try {
                         obj = (JSONObject) response1.get(0);
+                        gpsMode = obj.getBoolean("gps");
+                        if(!gpsMode) {
+                            gpsMessage = "False. Location may not be accurate as device is triangulating data";
+                        }
+                        else {
+                            gpsMessage = "True, Location should be accurate.";
+                        }
                         lat = obj.getDouble("lat");
                         lng = obj.getDouble("lng");
                         latlng = new LatLng(lat, lng);
 
-                        editData();
+
+
+                        Date currentTime = Calendar.getInstance().getTime();
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm               dd/mm/yyyy");
+                        String currentDateandTime = sdf.format(currentTime);
+
+                        listHash.clear();
+                        dropDowns.set(0, "Email: " + user.getEmail());
+                        dropDowns.set(1, "Name: " + user.getDogName());
+                        dropDowns.set(2, "Breed: " + user.getDogBreed());
+                        dropDowns2.set(0, "Current Location: \n" + lat + ", " + lng);
+                        dropDowns2.set(1, "Time last taken of location: \n" + currentDateandTime);
+                        dropDowns2.set(2, "Speed of recent recording: \n" + obj.getDouble("speed"));
+                        dropDowns2.set(3, "GPS: \n" + gpsMessage);
+
+                        listHash.put(listDataHeader.get(0), dropDowns);
+                        listHash.put(listDataHeader.get(1), dropDowns2);
+
+
                         listAdapter = new ExpandableAdapter(context, listDataHeader, listHash);
                         listView.setAdapter(listAdapter);
                         m.setPosition(latlng);
