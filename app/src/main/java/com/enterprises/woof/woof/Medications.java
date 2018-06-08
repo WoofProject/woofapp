@@ -48,6 +48,7 @@ public class Medications extends AppCompatActivity {
                     timeForm1.setLenient(false);
                     thisDate1 = dayForm1.parse(m.getDay());
                     thisDate1 = timeForm1.parse(m.getTime());
+
                     String texts = "";
                     for (int i = 0; i < medications.size(); i++) {
                         m = medications.get(i);

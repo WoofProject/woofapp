@@ -21,6 +21,7 @@ public class Appointments extends AppCompatActivity {
     public Date thisDate = new Date();
     public SimpleDateFormat dateForm = new SimpleDateFormat("dd MMMM YYYY");
     public SimpleDateFormat timeForm  = new SimpleDateFormat("h : mm a");
+    DatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,18 +50,19 @@ public class Appointments extends AppCompatActivity {
                     thisDate = dateForm.parse(a.getDate());
                     thisDate = timeForm.parse(a.getTime());
 
+                    //helper.insertAppointment(a);
+
                     String texts = "";
                     for (int i = 0; i < appointments.size(); i++) {
                         a = appointments.get(i);
                         if(i == 0){
                             texts = texts.concat("• "+a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
                         } else {
-                            texts = texts.concat("\n\n"+"• "+a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
+                            texts = texts.concat("\n\n" + "• " + a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
                         }
-
                     }
 
-                    if (a.getTitle() != null) {
+                    if (!a.getTitle().isEmpty()) {
 
                         ((TextView) findViewById(R.id.currentAppointment)).setText(texts);
                         ((TextView) findViewById(R.id.appointmentTitle)).setText("");
