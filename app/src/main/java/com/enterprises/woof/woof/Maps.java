@@ -1,11 +1,10 @@
 package com.enterprises.woof.woof;
 
+
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.database.DataSetObserver;
-import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -53,24 +52,25 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private LatLng latlng;
+
+
     JSONArray response1 = new JSONArray();
     JSONObject obj = new JSONObject();
     MarkerOptions a = new MarkerOptions()
-            .position(new LatLng(0,0));
+            .position(new LatLng(0, 0));
     Marker m;
     Double lat;
     Double lng;
     int PROXIMITY_RADIUS = 1000;
-    double latitude, longitude;
 
     CurrentUser user = new CurrentUser(this);
 
 
     private String getUrl(double latitude, double longitude, String nearbyPlace) {
         StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
-        googlePlaceUrl.append("location="+latitude+","+longitude);
-        googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
-        googlePlaceUrl.append("&keyword="+nearbyPlace);
+        googlePlaceUrl.append("location=" + latitude + "," + longitude);
+        googlePlaceUrl.append("&radius=" + PROXIMITY_RADIUS);
+        googlePlaceUrl.append("&keyword=" + nearbyPlace);
         googlePlaceUrl.append("&sensor=true");
         googlePlaceUrl.append("&key=AIzaSyBJKMaCC5NKpNnKU5K2cw6OR4OHzlE4pTw");
 
@@ -83,15 +83,17 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        listView = (ExpandableListView)findViewById(R.id.expandableView);
+        listView = (ExpandableListView) findViewById(R.id.expandableView);
         initData();
         listAdapter = new ExpandableAdapter(this, listDataHeader, listHash);
         listView.setAdapter(listAdapter);
+        listView.expandGroup(0);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 
         findViewById(R.id.goToLocation).setOnClickListener(new View.OnClickListener() {
 
@@ -112,7 +114,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
                 GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
                 getNearbyPlacesData.execute(dataTransfer);
-                Toast.makeText(Maps.this, "Showing the nearest Parks around your area", Toast.LENGTH_LONG).show();
+                Toast.makeText(Maps.this, "Showing the parks that are within walking distance in your area", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -136,9 +138,9 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
         listDataHeader.add(user.getDogName() + "'s Information");
         listDataHeader.add("Other Information");
 
-        dropDowns.add("Email: " );
-        dropDowns.add("Name: " );
-        dropDowns.add("Breed: " );
+        dropDowns.add("Email: "+user.getEmail());
+        dropDowns.add("Name: "+user.getDogName());
+        dropDowns.add("Breed: "+user.getDogBreed());
 
         dropDowns2.add("Current Location: \n" + lat + ", " + lng);
         dropDowns2.add("Time last taken of location: ");
@@ -161,11 +163,14 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        LatLng temp = new LatLng(user.getLatStatus(), user.getLngStats());
+        lat = user.getLatStatus();
+        lng = user.getLngStats();
         mMap = googleMap;
+        a = new MarkerOptions().position(new LatLng(user.getLatStatus(), user.getLngStats()));
         m = mMap.addMarker(a);
-        // Add a marker in Sydney and move the camera
-        // LatLng sydney = new LatLng(-34, 151);
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(temp, 18f), 2500, null);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -175,17 +180,17 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        mMap.setMyLocationEnabled(true);*/
+        mMap.setMyLocationEnabled(true);
+        // Add a marker in Sydney and move the camera
+        // LatLng sydney = new LatLng(-34, 151);
     }
 
-    public void getLocation () {
+    public void getLocation() {
         getResponse(this);
     }
 
 
-
-
-    public void getResponse (final Context context) {
+    public void getResponse(final Context context) {
         String url = "https://app.trackimo.com/api/v3/accounts/81361/locations/filter?limit=";
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         try {
@@ -201,17 +206,15 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
                     try {
                         obj = (JSONObject) response1.get(0);
                         gpsMode = obj.getBoolean("gps");
-                        if(!gpsMode) {
+                        if (!gpsMode) {
                             gpsMessage = "False. Location may not be accurate as device is triangulating data";
-                        }
-                        else {
+                        } else {
                             gpsMessage = "True, Location should be accurate.";
                         }
                         lat = obj.getDouble("lat");
                         lng = obj.getDouble("lng");
+                        user.setLocationStatus(lat, lng);
                         latlng = new LatLng(lat, lng);
-
-
 
                         Date currentTime = Calendar.getInstance().getTime();
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm               dd/mm/yyyy");
@@ -223,7 +226,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
                         dropDowns.set(2, "Breed: " + user.getDogBreed());
                         dropDowns2.set(0, "Current Location: \n" + lat + ", " + lng);
                         dropDowns2.set(1, "Time last taken of location: \n" + currentDateandTime);
-                        dropDowns2.set(2, "Speed of recent recording: \n" + obj.getDouble("speed"));
+                        dropDowns2.set(2, "Speed of last recording: \n" + obj.getDouble("speed"));
                         dropDowns2.set(3, "GPS: \n" + gpsMessage);
 
                         listHash.put(listDataHeader.get(0), dropDowns);
@@ -232,7 +235,10 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
 
                         listAdapter = new ExpandableAdapter(context, listDataHeader, listHash);
                         listView.setAdapter(listAdapter);
+                        listView.expandGroup(0);
                         m.setPosition(latlng);
+                        m.setTitle(user.getDogName()+ "'s current location");
+                        Toast.makeText(Maps.this, "Showing " + user.getDogName() + "'s location", Toast.LENGTH_LONG).show();
                         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latlng, 18f), 2500, null);
 
                     } catch (JSONException e) {
@@ -265,6 +271,5 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback {
             e.printStackTrace();
         }
     }
-
-
 }
+

@@ -42,6 +42,7 @@ public class Login extends AppCompatActivity {
                     String password = helper.searchPassword(str);
                     if (pass.equals(password)) {
                         user.setEmail(str);
+                        user.setLocationStatus(0, 0);
                         Toast correct = Toast.makeText(Login.this, "Logged In Successfully", Toast.LENGTH_SHORT);
                         correct.show();
                         startActivity(new Intent(Login.this, MainActivity.class));
@@ -56,6 +57,7 @@ public class Login extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                user.setLocationStatus(0,0);
                 startActivity(new Intent(Login.this, SignUp.class));
             }
         });

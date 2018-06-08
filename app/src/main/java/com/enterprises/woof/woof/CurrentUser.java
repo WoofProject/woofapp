@@ -11,6 +11,8 @@ public final class CurrentUser {
     private static String password;
     private static String dogName;
     private static String dogBreed;
+    private static double lat = 0.0;
+    private static double lng = 0.0;
 
     public CurrentUser(Context context) {
         helper = new DatabaseHelper(context);
@@ -37,6 +39,18 @@ public final class CurrentUser {
     public String getDogBreed() {
         dogBreed = helper.searchDogBreed(email);
         return dogBreed;
+    }
+
+    public void setLocationStatus(double lat, double lng) {
+        this.lat = lat;
+        this.lng = lng;
+    }
+
+    public double getLatStatus() {
+        return lat;
+    }
+    public double getLngStats() {
+        return lng;
     }
 
 }
