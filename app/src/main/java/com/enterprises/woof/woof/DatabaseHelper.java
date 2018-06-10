@@ -20,10 +20,27 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DOG_NAME = "dogName";
     private static final String COLUMN_DOG_BREED = "breed";
+    private static final String TABLE_NAME_A = "appointments";
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_TIME = "time";
 
     SQLiteDatabase db;
-    private static final String TABLE_CREATE = "create table clients (id integer primary key not null , " +
-            " name text not null , email text not null , password text not null , dogName text not null , breed text) ";
+    private static final String TABLE_CREATE = "create table clients " +
+            "(id integer primary key not null , " +
+            "name text not null , " +
+            "email text not null , " +
+            "password text not null , " +
+            "dogName text not null , " +
+            "breed text) ";
+
+    private static final String TABLE_CREATE_A = "create table appointments " +
+            "(id integer primary key not null , " +
+            "email text not null, " +
+            "title text not null , " +
+            "date text not null , " +
+            "time text not null)";
+
 
     public DatabaseHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -32,13 +49,16 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TABLE_CREATE);
+        db.execSQL(TABLE_CREATE_A);
         this.db = db;
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        String query1 = "DROP TABLE IF EXISTS " + TABLE_NAME_A;
         db.execSQL(query);
+        db.execSQL(query1);
         this.onCreate(db);
     }
 
@@ -150,6 +170,48 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             emails.add(email);
         }
         return emails;
+    }
+
+    public ArrayList<AppointmentObject> getAppointments(String email) {
+        ArrayList<AppointmentObject> appointments = new ArrayList<>();
+        db = this.getReadableDatabase();
+        String query = "select email, title, date, time from " + TABLE_NAME_A;
+        Cursor cursor = db.rawQuery(query, null);
+        String a;
+        String title, date, time;
+        if(cursor.moveToFirst()) {
+            do {
+                a = cursor.getString(0);
+
+                if(a.equals(email)) {
+                    title = cursor.getString(1);
+                    date = cursor.getString(2);
+                    time = cursor.getString(3);
+                    AppointmentObject currentAppointment = new AppointmentObject(title, date, time);
+                    appointments.add(currentAppointment);
+                }
+            }while(cursor.moveToNext());
+        }
+        return appointments;
+    }
+
+    public void insertAppointment(AppointmentObject c, Context context) {
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String query = "select * from clients";
+        Cursor cursor = db.rawQuery(query, null);
+        int count = cursor.getCount();
+        CurrentUser user = new CurrentUser(context);
+
+        values.put(COLUMN_ID, count);
+        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_TITLE, c.getTitle());
+        values.put(COLUMN_DATE, c.getDate());
+        values.put(COLUMN_TIME, c.getTime());
+
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
 

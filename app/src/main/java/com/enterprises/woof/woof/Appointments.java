@@ -21,10 +21,10 @@ public class Appointments extends AppCompatActivity {
     public Date thisDate = new Date();
     public SimpleDateFormat dateForm = new SimpleDateFormat("dd MMMM YYYY");
     public SimpleDateFormat timeForm  = new SimpleDateFormat("h : mm a");
-    DatabaseHelper helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointments);
 
@@ -40,36 +40,35 @@ public class Appointments extends AppCompatActivity {
             public void onClick(View v) {
 
                 try {
-                String title = ((TextView)findViewById(R.id.appointmentTitle)).getText().toString();
-                String date = ((TextView)findViewById(R.id.appointmentDate)).getText().toString();
-                String time = ((TextView)findViewById(R.id.appointmentTime)).getText().toString();
-                appointments.add(0, new AppointmentObject(title, date, time));
-                AppointmentObject a = appointments.get(0);
-                    dateForm.setLenient(false);
-                    timeForm.setLenient(false);
-                    thisDate = dateForm.parse(a.getDate());
-                    thisDate = timeForm.parse(a.getTime());
+                    String title = ((TextView)findViewById(R.id.appointmentTitle)).getText().toString();
+                    String date = ((TextView)findViewById(R.id.appointmentDate)).getText().toString();
+                    String time = ((TextView)findViewById(R.id.appointmentTime)).getText().toString();
 
-                    //helper.insertAppointment(a);
+                    if (!title.isEmpty() && title != null) {
 
-                    String texts = "";
-                    for (int i = 0; i < appointments.size(); i++) {
-                        a = appointments.get(i);
-                        if(i == 0){
-                            texts = texts.concat("• "+a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
-                        } else {
-                            texts = texts.concat("\n\n" + "• " + a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
+                        appointments.add(0, new AppointmentObject(title, date, time));
+                        AppointmentObject a = appointments.get(0);
+                        dateForm.setLenient(false);
+                        timeForm.setLenient(false);
+                        thisDate = dateForm.parse(a.getDate());
+                        thisDate = timeForm.parse(a.getTime());
+
+                        String texts = "";
+                        for (int i = 0; i < appointments.size(); i++) {
+                            a = appointments.get(i);
+                            if(i == 0){
+                                texts = texts.concat("• "+a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
+                            } else {
+                                texts = texts.concat("\n\n" + "• " + a.getTitle() + " on " + a.getDate() + " at " + a.getTime());
+                            }
                         }
-                    }
-
-                    if (!a.getTitle().isEmpty()) {
 
                         ((TextView) findViewById(R.id.currentAppointment)).setText(texts);
+                        CharSequence message = "Successfully added to appointments!";
                         ((TextView) findViewById(R.id.appointmentTitle)).setText("");
                         ((TextView) findViewById(R.id.appointmentTime)).setText(timeForm.format(thisDate));
                         ((TextView) findViewById(R.id.appointmentDate)).setText(dateForm.format(thisDate));
                         Context context = getApplicationContext();
-                        CharSequence message = "Successfully added to appointments!";
                         int duration = Toast.LENGTH_SHORT;
                         Toast toast = Toast.makeText(context, message, duration);
                         toast.setGravity(Gravity.TOP, 0, 700);

@@ -1,8 +1,10 @@
 package com.enterprises.woof.woof;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +41,8 @@ public class Login extends AppCompatActivity {
                 EditText b = (EditText)findViewById(R.id.enteredpassword);
                 String pass = b.getText().toString();
 
+                if (!str.isEmpty() && str != null && !pass.isEmpty() && pass != null) {
+
                     String password = helper.searchPassword(str);
                     if (pass.equals(password)) {
                         user.setEmail(str);
@@ -50,6 +54,14 @@ public class Login extends AppCompatActivity {
                         Toast incorrect = Toast.makeText(Login.this, "Username and password don't match!", Toast.LENGTH_SHORT);
                         incorrect.show();
                     }
+                } else {
+                    Context context = getApplicationContext();
+                    CharSequence message = "Please fill out all inputs!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, message, duration);
+                    toast.setGravity(Gravity.TOP, 0, 700);
+                    toast.show();
+                }
             }
         });
 

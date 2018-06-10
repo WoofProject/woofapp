@@ -42,7 +42,10 @@ public class Medications extends AppCompatActivity {
                     String title = ((TextView) findViewById(R.id.medicationTitle)).getText().toString();
                     String day = ((TextView) findViewById(R.id.medicationDay)).getText().toString();
                     String time = ((TextView) findViewById(R.id.medicationTime)).getText().toString();
-                    medications.add(0, new MedicationObject(title, day, time));
+
+                    if (!title.isEmpty() && title != null) {
+
+                        medications.add(0, new MedicationObject(title, day, time));
                     MedicationObject m = medications.get(0);
                     dayForm1.setLenient(false);
                     timeForm1.setLenient(false);
@@ -59,17 +62,25 @@ public class Medications extends AppCompatActivity {
                         }
                     }
 
-                    ((TextView)findViewById(R.id.currentMedication)).setText(texts);
-                    ((TextView)findViewById(R.id.medicationTitle)).setText("");
-                    ((TextView)findViewById(R.id.medicationDay)).setText(dayForm1.format(thisDate1));
-                    ((TextView)findViewById(R.id.medicationTime)).setText(timeForm1.format(thisDate1));
-                    Context context = getApplicationContext();
-                    CharSequence message = "Successfully added to medications!";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, message, duration);
-                    toast.setGravity(Gravity.TOP, 0, 700);
-                    toast.show();
+                        ((TextView) findViewById(R.id.currentMedication)).setText(texts);
+                        ((TextView) findViewById(R.id.medicationTitle)).setText("");
+                        ((TextView) findViewById(R.id.medicationDay)).setText(dayForm1.format(thisDate1));
+                        ((TextView) findViewById(R.id.medicationTime)).setText(timeForm1.format(thisDate1));
+                        Context context = getApplicationContext();
+                        CharSequence message = "Successfully added to medications!";
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast = Toast.makeText(context, message, duration);
+                        toast.setGravity(Gravity.TOP, 0, 700);
+                        toast.show();
 
+                    } else {
+                            Context context = getApplicationContext();
+                            CharSequence message = "Please fill out all inputs!";
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast = Toast.makeText(context, message, duration);
+                            toast.setGravity(Gravity.TOP, 0, 700);
+                            toast.show();
+                        }
                 } catch (ParseException e) {
                     e.printStackTrace();
                     Context context = getApplicationContext();
@@ -79,7 +90,6 @@ public class Medications extends AppCompatActivity {
                     toast.setGravity(Gravity.TOP, 0, 700);
                     toast.show();
                 }
-
             }
         });
     }

@@ -55,6 +55,8 @@ public class FragmentClient extends Fragment {
 
                 boolean isEmailLegit = true;
 
+                if (!namestr.isEmpty() && namestr != null && !emailstr.isEmpty() && emailstr != null && !passwordstr.isEmpty() && passwordstr !=null && !passwordstr2.isEmpty() && passwordstr2 != null) {
+
                 try {
                     InternetAddress emailA = new InternetAddress(emailstr);
                     emailA.validate();
@@ -80,6 +82,10 @@ public class FragmentClient extends Fragment {
                         Toast pass = Toast.makeText(getActivity(), "Username/email is invalid!", Toast.LENGTH_SHORT);
                         pass.show();
                     }
+                } else {
+                    Toast pass = Toast.makeText(getActivity(), "Please fill all inputs!", Toast.LENGTH_SHORT);
+                    pass.show();
+                }
             }
         });
         return view;

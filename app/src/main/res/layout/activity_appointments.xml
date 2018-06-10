@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:gravity="left"
-            android:text="No current appointments"
+            android:text="No upcoming appointments"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:scrollbars="vertical"/>
