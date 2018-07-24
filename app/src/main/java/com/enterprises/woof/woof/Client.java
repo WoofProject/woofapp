@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 
 public class Client {
-    static String name, email, password, dogName, dogBreed;
+    static String test, name, email, password, dogName, dogBreed;
 
     public Client() {
     }
